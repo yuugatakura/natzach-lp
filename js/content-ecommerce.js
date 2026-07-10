@@ -58,30 +58,34 @@ const ECOM_LANDING_CONTENT = {
   },
 
   // Replaces a traditional "proof" section — the free draft is the artifact
-  // they judge themselves, not a claim someone else makes.
+  // they judge themselves, not a claim someone else makes. Copy mirrors the
+  // live hard-sell ad script (hook varies by angle, this body/CTA is shared
+  // across the hard-sell/pain/gain ad variants) so the page message-matches
+  // whichever ad a visitor clicked.
   mechanism: {
-    eyebrow: "Kenapa Gratis",
-    title: "Ini yang kita bangun duluan — sebelum kamu bayar apa pun.",
+    eyebrow: "Gimana Cara Kerjanya",
+    title: "Website transisi lo — udah kita bikinin duluan, sebelum kamu bayar apa pun.",
     steps: [
       {
         title: "Isi form (2–3 menit)",
         body: "Cerita singkat soal brand dan produk kamu sekarang.",
       },
       {
-        title: "Kita bikin draft website brand kamu",
+        title: "Kita bikinin first draft website brand lo",
         body: "Asli dari brand kamu — bukan template kosong yang di-rename.",
       },
       {
-        title: "Suka? Lanjut revisi + invoice. Gasuka? Skip aja.",
-        body: "Tidak ada kewajiban, tidak ada tekanan follow-up.",
+        title: "Suka? Lanjut revisi + invoice. Gasuka? Ya udah, no hard feelings.",
+        body: "Gaada kewajiban, gaada tekanan follow-up.",
       },
     ],
+    commitmentLine: "Karena pivot ini bukan cuma soal punya website doang — gua bakal kawal lo selama 6 bulan kedepan di fase transisi dari marketplace ke kanal sendiri.",
     proofLine: "Sistem funnel & konversi yang bikin draft ini sudah teruji di TradingSahamWithAngel dan JLPT Accelerator — metodologinya proven, vertical e-commerce ini yang baru.",
   },
 
   cta: {
     label: "Isi Form, Dapetin Draft Gratis",
-    microcopy: "Gratis. Liat dulu draftnya sebelum mikirin bayar — kalau gasuka, skip aja.",
+    microcopy: "Liat draftnya duluan. Suka, lanjut ke revisi & invoice — gasuka, no hard feelings. Let's make more profit.",
   },
 
   faq: {

@@ -1661,6 +1661,18 @@ ol {
   color: var(--text-muted);
 }
 
+.mech-commitment {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  max-width: 60ch;
+}
+
 .mech-proof-line {
   margin-top: 32px;
   padding-top: 24px;

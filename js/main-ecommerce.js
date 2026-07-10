@@ -104,6 +104,7 @@
     const m = ECOM_LANDING_CONTENT.mechanism;
     document.getElementById("mechEyebrow").textContent = m.eyebrow;
     document.getElementById("mechTitle").textContent = m.title;
+    document.getElementById("mechCommitmentLine").textContent = m.commitmentLine;
     document.getElementById("mechProofLine").textContent = m.proofLine;
 
     const list = document.getElementById("mechSteps");
@@ -122,11 +123,31 @@
 
   /* ---------- CTA + sticky bar ---------- */
 
+  // Carries utm_* params from the ad click through to the Tally link, so
+  // Tally submissions can be traced back to which ad angle (hard-sell/pain/
+  // gain) sent the visitor — no Meta Pixel wired up yet, so this is the
+  // only attribution signal the campaign has.
+  function withTrackingParams(baseUrl) {
+    const trackingKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+    try {
+      const current = new URLSearchParams(window.location.search);
+      const url = new URL(baseUrl);
+      trackingKeys.forEach((key) => {
+        const value = current.get(key);
+        if (value) url.searchParams.set(key, value);
+      });
+      return url.toString();
+    } catch (e) {
+      return baseUrl;
+    }
+  }
+
   function renderCta() {
+    const trackedUrl = withTrackingParams(ECOM_LANDING_CONTENT.ctaUrl);
     ["ctaButton", "stickyCtaButton"].forEach((id) => {
       const el = document.getElementById(id);
       el.textContent = ECOM_LANDING_CONTENT.ctaLabel;
-      el.href = ECOM_LANDING_CONTENT.ctaUrl;
+      el.href = trackedUrl;
     });
     document.getElementById("ctaMicrocopy").textContent = ECOM_LANDING_CONTENT.cta.microcopy;
   }
