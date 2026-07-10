@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natzach — Miliki Toko, Traffic, dan Pelangganmu Sendiri</title>
+<meta name="description" content="Natzach bangun toko, mesin traffic, dan daftar pelanggan yang sepenuhnya kamu miliki — supaya margin yang selama ini numpang jualan ke marketplace, balik ke kantong kamu.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo">Natzach</a>
+    <nav class="nav-desktop" id="navDesktop" aria-label="Navigasi utama"></nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <nav id="navMobileLinks" aria-label="Navigasi mobile"></nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1 class="hero-headline" id="heroHeadline"></h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <div class="hero-actions">
+          <a class="btn btn-accent btn-large" id="heroCta" target="_blank" rel="noopener">Book Free Consultation</a>
+          <a class="link-secondary" id="heroSecondary"></a>
+        </div>
+        <p class="hero-microcopy" id="heroMicrocopy"></p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="leak-viz reveal" id="leakViz">
+        <div class="leak-viz-head">
+          <h2 class="leak-title" id="leakTitle"></h2>
+          <p class="leak-caption" id="leakCaption"></p>
+        </div>
+
+        <div class="leak-columns">
+          <div class="leak-col">
+            <div class="leak-col-label">Marketplace</div>
+            <div class="leak-bar leak-bar-market" id="leakBarMarket" role="img" aria-label="Rincian potongan biaya marketplace"></div>
+            <ul class="leak-legend" id="leakLegend"></ul>
+          </div>
+          <div class="leak-col">
+            <div class="leak-col-label">Kanal Sendiri</div>
+            <div class="leak-bar leak-bar-owned" id="leakBarOwned">
+              <span class="leak-bar-owned-fill"></span>
+              <span class="leak-bar-owned-value" id="leakOwnedValue"></span>
+            </div>
+            <p class="leak-owned-note" id="leakOwnedNote"></p>
+          </div>
+        </div>
+
+        <p class="leak-callout"><span id="leakCallout"></span> <cite id="leakCalloutSource"></cite></p>
+
+        <div class="fee-trend-block">
+          <p class="eyebrow" id="feeTrendEyebrow"></p>
+          <h3 class="calc-block-title" id="feeTrendTitle"></h3>
+          <p class="fee-trend-subtitle" id="feeTrendSubtitle"></p>
+          <div class="fee-trend-chart-wrap">
+            <div class="fee-trend-chart" id="feeTrendChart"></div>
+          </div>
+          <p class="calc-note" id="feeTrendNote"></p>
+        </div>
+
+        <div class="calc-block">
+          <p class="eyebrow" id="calcEyebrow"></p>
+          <h3 class="calc-block-title" id="calcTitle"></h3>
+          <div class="calc-input-row">
+            <label for="calcInput" id="calcInputLabel"></label>
+            <div class="calc-input-wrap">
+              <span class="calc-input-prefix">Rp</span>
+              <input type="text" inputmode="numeric" id="calcInput">
+            </div>
+          </div>
+          <div class="calc-outputs">
+            <div class="calc-out calc-out-bad">
+              <span id="calcMarketLabel"></span>
+              <strong class="tnum" id="calcMarketValue"></strong>
+            </div>
+            <div class="calc-out calc-out-neutral">
+              <span id="calcOwnedLabel"></span>
+              <strong class="tnum" id="calcOwnedValue"></strong>
+            </div>
+            <div class="calc-out calc-out-good">
+              <span id="calcSavingsLabel"></span>
+              <strong class="tnum" id="calcSavingsValue"></strong>
+              <small class="tnum" id="calcSavingsYear"></small>
+            </div>
+          </div>
+          <p class="calc-note" id="calcNote"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN GRID -->
+  <section id="masih-di-marketplace" class="section pain">
+    <div class="wrap">
+      <p class="eyebrow" id="painEyebrow"></p>
+      <h2 class="section-title" id="painTitle"></h2>
+      <div class="pain-grid" id="painGrid"></div>
+    </div>
+  </section>
+
+  <!-- BENTO / CARA KERJA -->
+  <section id="cara-kerja" class="section bento">
+    <div class="wrap">
+      <p class="eyebrow" id="bentoEyebrow"></p>
+      <h2 class="section-title" id="bentoTitle"></h2>
+      <div class="bento-grid" id="bentoGrid"></div>
+    </div>
+  </section>
+
+  <!-- BUKTI KERJA -->
+  <section id="bukti-kerja" class="section proof">
+    <div class="wrap">
+      <p class="eyebrow" id="proofEyebrow"></p>
+      <h2 class="section-title" id="proofTitle"></h2>
+      <p class="section-intro" id="proofIntro"></p>
+      <div class="proof-grid" id="proofGrid"></div>
+    </div>
+  </section>
+
+  <!-- KENAPA BEDA -->
+  <section id="kenapa-beda" class="section why">
+    <div class="wrap">
+      <p class="eyebrow" id="whyEyebrow"></p>
+      <h2 class="section-title" id="whyTitle"></h2>
+      <div class="why-grid" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimoni" class="section testimonials">
+    <div class="wrap">
+      <p class="eyebrow" id="testiEyebrow"></p>
+      <h2 class="section-title" id="testiTitle"></h2>
+      <div class="testi-grid" id="testiGrid"></div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrik" class="section metrics">
+    <div class="wrap">
+      <p class="eyebrow" id="metricsEyebrow"></p>
+      <h2 class="section-title" id="metricsTitle"></h2>
+      <div class="metrics-grid" id="metricsGrid"></div>
+    </div>
+  </section>
+
+  <!-- OPERATOR -->
+  <section id="operator" class="section operator">
+    <div class="wrap operator-inner">
+      <div class="operator-photo" id="operatorPhoto"></div>
+      <div class="operator-content">
+        <p class="eyebrow" id="operatorEyebrow"></p>
+        <h2 class="section-title" id="operatorTitle"></h2>
+        <p class="operator-name" id="operatorName"></p>
+        <ul class="operator-principles" id="operatorPrinciples"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section faq">
+    <div class="wrap">
+      <p class="eyebrow" id="faqEyebrow"></p>
+      <h2 class="section-title" id="faqTitle"></h2>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section final-cta">
+    <div class="wrap final-cta-inner">
+      <h2 class="final-cta-headline" id="finalHeadline"></h2>
+      <p class="final-cta-sub" id="finalSub"></p>
+      <ol class="final-steps" id="finalSteps"></ol>
+      <a class="btn btn-accent btn-large" id="finalCta" target="_blank" rel="noopener">Book Free Consultation</a>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="tentang-kami" class="section about-us">
+    <div class="wrap">
+      <div class="about-us-inner">
+        <p class="eyebrow" id="aboutEyebrow"></p>
+        <p class="about-us-text" id="aboutText"></p>
+        <a class="about-us-link" id="aboutInstagramLink" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span class="logo logo-small">Natzach</span>
+    <div class="social-icons-footer" id="socialIconsFooter"></div>
+    <span class="footer-tagline" id="footerTagline"></span>
+  </div>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
