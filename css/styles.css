@@ -1630,7 +1630,7 @@ ol {
   align-items: flex-start;
 }
 
-.mech-steps li span {
+.mech-step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;

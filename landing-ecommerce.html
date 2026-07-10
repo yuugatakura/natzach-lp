@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natzach — Liat Berapa Fee Marketplace Makan dari Omzet Kamu</title>
+<meta name="description" content="Liat berapa fee marketplace makan dari omzet kamu bulan ini — dan dapetin draft website brand kamu sendiri, gratis, sebelum mikirin bayar.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<main id="top">
+
+  <!-- HERO — hook + mechanism, no CTA yet -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1 class="hero-headline" id="heroHeadline"></h1>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="leak-viz reveal" id="leakViz">
+        <div class="leak-viz-head">
+          <h2 class="leak-title" id="leakTitle"></h2>
+          <p class="leak-caption" id="leakCaption"></p>
+        </div>
+
+        <div class="leak-columns">
+          <div class="leak-col">
+            <div class="leak-col-label">Marketplace</div>
+            <div class="leak-bar leak-bar-market" id="leakBarMarket" role="img" aria-label="Rincian potongan biaya marketplace"></div>
+            <ul class="leak-legend" id="leakLegend"></ul>
+          </div>
+          <div class="leak-col">
+            <div class="leak-col-label">Kanal Sendiri</div>
+            <div class="leak-bar leak-bar-owned" id="leakBarOwned">
+              <span class="leak-bar-owned-fill"></span>
+              <span class="leak-bar-owned-value" id="leakOwnedValue"></span>
+            </div>
+            <p class="leak-owned-note" id="leakOwnedNote"></p>
+          </div>
+        </div>
+
+        <p class="leak-callout"><span id="leakCallout"></span> <cite id="leakCalloutSource"></cite></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM — 2 pain points only -->
+  <section class="section pain">
+    <div class="wrap">
+      <p class="eyebrow" id="problemEyebrow"></p>
+      <h2 class="section-title" id="problemTitle"></h2>
+      <div class="pain-grid" id="problemGrid"></div>
+    </div>
+  </section>
+
+  <!-- MECHANISM — "this is what we build", replaces a testimonial-based proof section -->
+  <section class="section mechanism">
+    <div class="wrap">
+      <p class="eyebrow" id="mechEyebrow"></p>
+      <h2 class="section-title" id="mechTitle"></h2>
+      <ol class="mech-steps" id="mechSteps"></ol>
+      <p class="mech-proof-line" id="mechProofLine"></p>
+    </div>
+  </section>
+
+  <!-- CTA — single action -->
+  <section class="section final-cta">
+    <div class="wrap final-cta-inner">
+      <a class="btn btn-accent btn-large" id="ctaButton" target="_blank" rel="noopener"></a>
+      <p class="hero-microcopy" id="ctaMicrocopy"></p>
+    </div>
+  </section>
+
+  <!-- FAQ — max 2 questions -->
+  <section class="section faq">
+    <div class="wrap">
+      <p class="eyebrow" id="faqEyebrow"></p>
+      <h2 class="section-title" id="faqTitle"></h2>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- STICKY CTA BAR -->
+<div class="sticky-cta-bar" id="stickyCtaBar">
+  <a class="btn btn-accent" id="stickyCtaButton" target="_blank" rel="noopener"></a>
+</div>
+
+<script src="js/content-ecommerce.js"></script>
+<script src="js/main-ecommerce.js"></script>
+</body>
+</html>
