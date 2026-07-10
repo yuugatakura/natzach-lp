@@ -10,10 +10,10 @@
 const crypto = require("crypto");
 
 const API_VERSION = "v25.0";
-// TEMPORARY: routes events into Meta's Test Events tool so they can be
-// verified in real time. Remove once server events are confirmed
-// arriving, so production traffic stops being tagged as test data.
-const TEST_EVENT_CODE = "TEST92259";
+// Server events confirmed deduplicating correctly against the browser
+// pixel in Meta's Test Events tool (2026-07-11) -- no longer tagging
+// as test data, so real traffic flows into normal reporting again.
+const TEST_EVENT_CODE = null;
 
 function sha256(value) {
   return crypto.createHash("sha256").update(String(value).trim().toLowerCase()).digest("hex");
