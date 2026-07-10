@@ -29,15 +29,24 @@
       },
       extra || {}
     );
-    // Fire-and-forget: never blocks the CTA navigation, and a missing
-    // /api route (e.g. testing the static files without Vercel) just
-    // fails silently rather than breaking the click.
+    // Fire-and-forget: never blocks the CTA navigation. Failures are
+    // logged to the console (not surfaced to the user) so they're
+    // visible in devtools while debugging, without breaking the click.
     fetch("/api/capi-event", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       keepalive: true,
-    }).catch(() => {});
+    })
+      .then((res) => {
+        if (!res.ok) {
+          res
+            .json()
+            .catch(() => ({}))
+            .then((body) => console.warn("[capi] server event failed:", res.status, body));
+        }
+      })
+      .catch((err) => console.warn("[capi] server event request failed:", err.message));
   }
 
   function trackDual(eventName, extra) {
