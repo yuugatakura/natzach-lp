@@ -90,6 +90,9 @@
       if (el) {
         el.textContent = CONTENT.ctaLabel;
         el.href = CONTENT.ctaUrl;
+        el.addEventListener("click", () => {
+          if (typeof fbq === "function") fbq("track", "Lead");
+        });
       }
     });
 

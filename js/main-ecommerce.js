@@ -148,6 +148,9 @@
       const el = document.getElementById(id);
       el.textContent = ECOM_LANDING_CONTENT.ctaLabel;
       el.href = trackedUrl;
+      el.addEventListener("click", () => {
+        if (typeof fbq === "function") fbq("track", "Lead");
+      });
     });
     document.getElementById("ctaMicrocopy").textContent = ECOM_LANDING_CONTENT.cta.microcopy;
   }
