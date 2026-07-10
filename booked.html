@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1744295743583836');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1744295743583836&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meeting Kamu Udah Kebooking — Natzach</title>
+<meta name="description" content="Meeting kamu udah kebooking. Sampai ketemu di call-nya.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1 class="hero-headline">Meeting kamu <span class="text-accent">udah kebooking.</span></h1>
+        <p class="hero-sub">Sampai ketemu di call-nya. Kalau ada yang perlu disiapin sebelum itu, kita kabarin via WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/capi.js"></script>
+<script>
+  (function () {
+    // cal.com's exact redirect query param names for the booker's email
+    // vary by plan/version -- try the common aliases, but this should be
+    // confirmed against a real test booking and adjusted if needed.
+    var params = new URLSearchParams(window.location.search);
+    var email = params.get("email") || params.get("attendeeEmail") || params.get("bookerEmail");
+    NatzachCapi.trackDual("Schedule", email ? { email: email } : undefined);
+  })();
+</script>
+</body>
+</html>
