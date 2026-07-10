@@ -149,7 +149,10 @@
       el.textContent = ECOM_LANDING_CONTENT.ctaLabel;
       el.href = trackedUrl;
       el.addEventListener("click", () => {
-        if (typeof fbq === "function") fbq("track", "Lead");
+        // Clicking here only means "heading to the Tally form" — the real
+        // Lead event fires once the form is actually submitted (see the
+        // redirect-page pattern noted for Tally's completion redirect).
+        if (typeof fbq === "function") fbq("track", "InitiateCheckout");
       });
     });
     document.getElementById("ctaMicrocopy").textContent = ECOM_LANDING_CONTENT.cta.microcopy;
