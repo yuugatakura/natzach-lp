@@ -25,8 +25,11 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const pixelId = process.env.META_PIXEL_ID;
-  const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
+  // .trim() guards against a stray leading/trailing newline or space
+  // from copy-pasting into Vercel's env var field -- a common cause of
+  // Meta's "Bad signature" (code 190) rejection.
+  const pixelId = (process.env.META_PIXEL_ID || "").trim();
+  const accessToken = (process.env.META_CAPI_ACCESS_TOKEN || "").trim();
   if (!pixelId || !accessToken) {
     console.error("[capi-event] missing config", {
       hasPixelId: Boolean(pixelId),
@@ -80,6 +83,10 @@ module.exports = async (req, res) => {
   };
 
   const url = `https://graph.facebook.com/${API_VERSION}/${pixelId}/events?access_token=${encodeURIComponent(accessToken)}`;
+  // Masked preview only -- never log the full token -- so a "Bad
+  // signature" (code 190) rejection can be cross-checked against what
+  // was actually pasted into the Vercel env var, without exposing it.
+  console.log("[capi-event] using pixelId:", pixelId, "| token length:", accessToken.length, "| token preview:", accessToken.slice(0, 6) + "..." + accessToken.slice(-6));
   console.log("[capi-event] sending to Meta:", JSON.stringify(payload));
 
   try {
