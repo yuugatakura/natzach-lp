@@ -49,8 +49,13 @@
       .catch((err) => console.warn("[capi] server event request failed:", err.message));
   }
 
-  function trackDual(eventName, extra) {
-    const eventId = generateEventId();
+  // explicitEventId lets callers (e.g. the Tally/cal.com redirect
+  // pages) reuse an ID that a webhook will also use for the same
+  // underlying event (Tally's submissionId, cal.com's booking uid),
+  // so the browser event and the webhook's server event dedupe into
+  // one instead of double-counting.
+  function trackDual(eventName, extra, explicitEventId) {
+    const eventId = explicitEventId || generateEventId();
     if (typeof fbq === "function") {
       fbq("track", eventName, {}, { eventID: eventId });
     }

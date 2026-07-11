@@ -1,41 +1,16 @@
 /**
- * Server-side Meta Conversions API relay. Runs as a Vercel serverless
- * function (zero-config: any file under /api is auto-detected). The
- * pixel access token lives only in the META_CAPI_ACCESS_TOKEN Vercel
- * environment variable — never in source, never shipped to the browser.
+ * Server-side Meta Conversions API relay for browser-originated events.
+ * Runs as a Vercel serverless function (zero-config: any file under
+ * /api is auto-detected).
  *
  * Called from js/capi.js alongside the client-side fbq() pixel call,
  * sharing the same event_id so Meta dedupes the two into one event.
  */
-const crypto = require("crypto");
-
-const API_VERSION = "v25.0";
-// Server events confirmed deduplicating correctly against the browser
-// pixel in Meta's Test Events tool (2026-07-11) -- no longer tagging
-// as test data, so real traffic flows into normal reporting again.
-const TEST_EVENT_CODE = null;
-
-function sha256(value) {
-  return crypto.createHash("sha256").update(String(value).trim().toLowerCase()).digest("hex");
-}
+const { sendToMeta, sha256 } = require("./_lib/meta-capi");
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
-    return;
-  }
-
-  // .trim() guards against a stray leading/trailing newline or space
-  // from copy-pasting into Vercel's env var field -- a common cause of
-  // Meta's "Bad signature" (code 190) rejection.
-  const pixelId = (process.env.META_PIXEL_ID || "").trim();
-  const accessToken = (process.env.META_CAPI_ACCESS_TOKEN || "").trim();
-  if (!pixelId || !accessToken) {
-    console.error("[capi-event] missing config", {
-      hasPixelId: Boolean(pixelId),
-      hasAccessToken: Boolean(accessToken),
-    });
-    res.status(500).json({ error: "META_PIXEL_ID and/or META_CAPI_ACCESS_TOKEN not configured" });
     return;
   }
 
@@ -67,45 +42,14 @@ module.exports = async (req, res) => {
   if (fbp) user_data.fbp = fbp;
   if (fbc) user_data.fbc = fbc;
 
-  const payload = {
-    data: [
-      {
-        event_name,
-        event_id,
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        event_source_url,
-        user_data,
-        ...(custom_data ? { custom_data } : {}),
-      },
-    ],
-    ...(TEST_EVENT_CODE ? { test_event_code: TEST_EVENT_CODE } : {}),
-  };
+  const result = await sendToMeta({
+    logPrefix: "[capi-event]",
+    event_name,
+    event_id,
+    event_source_url,
+    user_data,
+    custom_data,
+  });
 
-  const url = `https://graph.facebook.com/${API_VERSION}/${pixelId}/events?access_token=${encodeURIComponent(accessToken)}`;
-  // Masked preview only -- never log the full token -- so a "Bad
-  // signature" (code 190) rejection can be cross-checked against what
-  // was actually pasted into the Vercel env var, without exposing it.
-  console.log("[capi-event] using pixelId:", pixelId, "| token length:", accessToken.length, "| token preview:", accessToken.slice(0, 6) + "..." + accessToken.slice(-6));
-  console.log("[capi-event] sending to Meta:", JSON.stringify(payload));
-
-  try {
-    const metaRes = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = await metaRes.json();
-
-    if (metaRes.ok) {
-      console.log("[capi-event] Meta response OK:", metaRes.status, JSON.stringify(result));
-    } else {
-      console.error("[capi-event] Meta response ERROR:", metaRes.status, JSON.stringify(result));
-    }
-
-    res.status(metaRes.ok ? 200 : 502).json(result);
-  } catch (err) {
-    console.error("[capi-event] request to Meta failed:", err.message);
-    res.status(502).json({ error: "Failed to reach Meta", detail: err.message });
-  }
+  res.status(result.ok ? 200 : 502).json(result.body);
 };

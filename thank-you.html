@@ -46,7 +46,12 @@ src="https://www.facebook.com/tr?id=1744295743583836&ev=PageView&noscript=1"
   (function () {
     var params = new URLSearchParams(window.location.search);
     var email = params.get("email");
-    NatzachCapi.trackDual("Lead", email ? { email: email } : undefined);
+    // submission_id: pass Tally's Submission ID merge tag through the
+    // redirect URL so this matches the same event_id the Tally webhook
+    // uses -- lets Meta dedupe the browser event against the webhook's
+    // server event instead of double-counting.
+    var submissionId = params.get("submission_id");
+    NatzachCapi.trackDual("Lead", email ? { email: email } : undefined, submissionId || undefined);
   })();
 </script>
 </body>

@@ -49,7 +49,12 @@ src="https://www.facebook.com/tr?id=1744295743583836&ev=PageView&noscript=1"
     // confirmed against a real test booking and adjusted if needed.
     var params = new URLSearchParams(window.location.search);
     var email = params.get("email") || params.get("attendeeEmail") || params.get("bookerEmail");
-    NatzachCapi.trackDual("Schedule", email ? { email: email } : undefined);
+    // uid: cal.com appends this to its redirect-on-booking URL by
+    // default -- it's the same booking uid the cal.com webhook uses as
+    // event_id, so Meta dedupes the browser event against the
+    // webhook's server event instead of double-counting.
+    var uid = params.get("uid");
+    NatzachCapi.trackDual("Schedule", email ? { email: email } : undefined, uid || undefined);
   })();
 </script>
 </body>
